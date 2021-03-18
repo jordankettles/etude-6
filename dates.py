@@ -3,30 +3,6 @@ import sys
 #Author: Jordan Kettles 2147684
 # Date: 10/03/21
 
-#Read a date and determine whether it is a valid date
-# between the years 1753 and 3000.
-
-#Either state why the date is invalid.
-# or outptu a valid date in the format
-# <dd> <first three char of month> <yyyy>
-# e.g. 02 Apr 1997
-#month input could be the first three letters of the month
-#name all in the same case, all with the first letter upper-case.
-#seperators could be space, / or -
-
-#calcutate whether the date is valid (29th of Feb)
-#How do i calculate leap years?
-#if the year is two numbers, it lies between 1950 and 2049.
-#if >49 +1900 else +2000
-
-#check if the first letter is uppercase:
-#all follwing letters have to be the same case.
-
-#if the first letter is lowercase:
-#all following letters have to be lowercase.
-
-#days lie between 01 and 31.
-
 def print_invalid(input, reason):
     print(input + " - INVALID: " + reason)
 
@@ -72,7 +48,7 @@ def validate_day(input, d):
     print_invalid(input, "Day does not have any characters.")
     return 0
 
-# returns three letter string.
+
 def validate_month(input, m):
     # 1-2
     if (3 > len(m) > 0):
@@ -200,13 +176,13 @@ def validate_dmy(input, d, m, y):
         month = dm[1]
         year = validate_year(input, y)
         if year == 0:
-            return 1
+            return
 
         #Check for leap years.
         if (month == 2 and day == 29):
             if not leap_year_check(year):
                 print_invalid(input, str(year) + " is not a leap year.")
-                return 1
+                return
         #The Date is a valid date.
         day_str = str(day)
         # Add 0 to the start of the day string if the day has one digit.
@@ -216,10 +192,6 @@ def validate_dmy(input, d, m, y):
         month_str = month_list[month-1]
         year_str = str(year)
         print(day_str + " " + month_str + " " + year_str)
-        return 0
-    else:
-        #check you can't reach here without first having run print_invalid.
-        return 1
 
 
 if __name__ == "__main__":
@@ -253,4 +225,4 @@ if __name__ == "__main__":
 
         else:
             # PLACEHOLDER.
-            print_invalid(line, "Separators are incorrect.")
+            print_invalid(line, "Does not follow the correct format.")
