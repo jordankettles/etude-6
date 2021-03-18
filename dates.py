@@ -165,6 +165,7 @@ def validate_dm(input, d, m):
     # year is not checked yet.
     if month == 2 and day > 29:
         print_invalid(input, "Feb has less than 30 days.")
+        return None
     # 28 Feb except on a leap year 29.
     return day, month
 
@@ -199,6 +200,11 @@ if __name__ == "__main__":
     month_list = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     for line in sys.stdin:
+
+        if not line[0].isnumeric():
+            print_invalid(line.rstrip(), "First character is not a number.")
+            continue
+
         line = line.strip()
         dash = line.split("-")
         slash = line.split("/")
